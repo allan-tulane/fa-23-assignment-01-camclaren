@@ -2,7 +2,7 @@
 
 # CMPS 2200 Assignment 1
 
-**Name:**_________________________
+**Name:**__Cameron McLaren_______
 
 
 In this assignment, you will learn more about asymptotic notation, parallelism, functional languages, and algorithmic cost models. As in the recitation, some of your answer will go here and some will go in `main.py`. You are welcome to edit this `assignment-01.md` file directly, or print and fill in by hand. If you do the latter, please scan to a file `assignment-01.pdf` and push to your github repository. 
@@ -11,36 +11,37 @@ In this assignment, you will learn more about asymptotic notation, parallelism, 
 
 1. (2 pts ea) **Asymptotic notation** (12 pts)
 
-  - 1a. Is $2^{n+1} \in O(2^n)$? Why or why not? 
+  - 1a. Is $2^{n+1} \in O(2^n)$? Why or why not?
 .  
-.  
-.  
+.  No, 2^(n+1) is not in O(2^n) because if you plug in any value for n, 2^(n+1) will always output a larger value. While they both have exponential growth rate, 2^(n+1) grows quicker, therefore it's always going to have a slower time complexity than O(2^n).
 .  
 . 
-  - 1b. Is $2^{2^n} \in O(2^n)$? Why or why not?     
+  - 1b. Is $2^{2^n} \in O(2^n)$? Why or why not?
+.  
+.  No, 2^(2^n) is not in O(2^n) because of the same logic as above: if you plug in any value for n, 2^(2^n) will always output a larger value. While they both have exponential growth rate, 2^(2^n) grows quicker, therefore it's always going to have a slower time complexity than O(2^n).
 .  
 .  
+  - 1c. Is $n^{1.01} \in O(\mathrm{log}^2 n)$?
 .  
-.  
-.  
-  - 1c. Is $n^{1.01} \in O(\mathrm{log}^2 n)$?    
-.  
-.  
+.  No, n^(1.01) is not in O(log^2 n) because of the same logic as above: if you plug in any value for n, n^(1.01) will always output a larger value. n^(1.01) grows quicker since it's polynomial, therefore it's always going to have a slower time complexity than O(log^2 n), which is logarithmic.
 .  
 .  
 
-  - 1d. Is $n^{1.01} \in \Omega(\mathrm{log}^2 n)$?  
+  - 1d. Is $n^{1.01} \in \Omega(\mathrm{log}^2 n)$?
+.  
+.  Yes, n^(1.01) is in Omega(log^2 n) because if you plug in any value for n, n^(1.01) will always output a larger value. n^(1.01) grows quicker since it's polynomial, therefore it's always going to have a slower time complexity than Omega(log^2 n), which is logarithmic. Hence, with n^(1.01), it is greater than Omega(log^2 n) therefore it's above the lower bound set by the Omega function.
 .  
 .  
+  - 1e. Is $\sqrt{n} \in O((\mathrm{log} n)^3)$?
+.  
+.  No, sqrt(n) is not in O((logn)^3) because if you plug in any value for n, sqrt(n) will always output a larger value. sqrt(n) grows quicker since it's a square root function, therefore it's always going to have a slower time complexity than O((logn)^3), which is logarithmic. Thus, sqrt(n) will always exceed the bound set by the Big-O function.
 .  
 .  
-  - 1e. Is $\sqrt{n} \in O((\mathrm{log} n)^3)$?  
+  - 1f. Is $\sqrt{n} \in \Omega((\mathrm{log} n)^3)$?
 .  
-.  
-.  
-.  
-  - 1f. Is $\sqrt{n} \in \Omega((\mathrm{log} n)^3)$?  
-.  
+.  Yes, sqrt(n) is in Omega((logn)^3) because if you plug in any value for n, sqrt(n)) will always output a larger value. sqrt(n) grows quicker since it's a square root function, therefore it's always going to have a slower time complexity than Omega((logn)^3), which is logarithmic. Hence, with sqrt(n), it is greater than Omega((logn)^3) therefore it's above the lower bound set by the Omega function.
+.
+.
 
 
 2. **SPARC to Python** (12 pts)
@@ -74,7 +75,7 @@ $$
 
 3. **Parallelism and recursion** (26 pts)
 
-Consider the following function:  
+Consider the following function:
 
 ```python
 def longest_run(myarray, key)
@@ -86,11 +87,11 @@ def longest_run(myarray, key)
       the longest continuous sequence of `key` in `myarray`
    """
 ```
-E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`  
+E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`
  
   - 3a. (7 pts) First, implement an iterative, sequential version of `longest_run` in `main.py`.  
 
-  - 3b. (4 pts) What is the Work and Span of this implementation?  
+  - 3b. (4 pts) What is the Work and Span of this implementation?
 
 .  
 .  

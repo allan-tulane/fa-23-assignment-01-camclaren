@@ -16,13 +16,17 @@ def longest_run(mylist, key):
     current_seq = 0
     max_seq = 0
 
-    for i in mylist:
-        if i == key:
-            current_seq += 1
-        else:
-            if current_seq > max_seq:
-                max_seq = current_seq
-            current_seq = 0
+    if key not in mylist:
+        return 0
+    else:
+        for i in mylist:
+            if i == key:
+                current_seq += 1
+            else:
+                if current_seq > max_seq:
+                    max_seq = current_seq
+                current_seq = 0
+        return max_seq
 
 
 class Result:
@@ -41,27 +45,27 @@ class Result:
 def longest_run_recursive(mylist, key):
     # if there's no items, the key does not cover any of the range of the list
     if len(mylist) == 0:
-        return Result(0, 0, 0, False)
+        return 0
     # if there's only one item, that one item is the key; therefore the key covers the entire range of the list
     elif len(mylist) == 1:
         if mylist[0] == key:
-            return Result(1, 1, 1, True)
+            return 1
         else:
-            return Result(1, 1, 1, False)
+            return 0
     else:
-        halves = len(mylist) // 2
-        left = longest_run_recursive(mylist[:halves], key)
-        right = longest_run_recursive(mylist[:halves], key)
+        list_split = len(mylist) // 2
+        left = longest_run_recursive(mylist[:list_split], key)
+        right = longest_run_recursive(mylist[:list_split], key)
 
-        if mylist[halves] == mylist[halves - 1] == key:
-            whole = left.right_size + right.right_size
+        if mylist[list_split] == mylist[list_split - 1] == key:
+            combined_list = left.right_size + right.right_size
             is_entire_range = left.is_entire_range and right.is_entire_range
 
         else:
             if left.longest_size > right.longest_size:
-                whole = left.longest_size
+                combined_list = left.longest_size
             else:
-                whole = right.longest_size
+                combined_list = right.longest_size
             is_entire_range = False
         if left.left_size > right.right_size:
             return Result(left.left_size, right.right_size, left.left_size, is_entire_range)
@@ -71,5 +75,6 @@ def longest_run_recursive(mylist, key):
 ## Feel free to add your own tests here.
 def test_longest_run():
     assert longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3
+    assert longest_run([12, 1, 1, 1, 1, 3, 1, 1, 4], 1) == 4
 
 

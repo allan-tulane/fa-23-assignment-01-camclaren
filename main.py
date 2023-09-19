@@ -55,22 +55,9 @@ def longest_run_recursive(mylist, key):
     else:
         list_split = len(mylist) // 2
         left = longest_run_recursive(mylist[:list_split], key)
-        right = longest_run_recursive(mylist[:list_split], key)
+        right = longest_run_recursive(mylist[list_split:], key)
 
-        if mylist[list_split] == mylist[list_split - 1] == key:
-            combined_list = left.right_size + right.right_size
-            is_entire_range = left.is_entire_range and right.is_entire_range
-
-        else:
-            if left.longest_size > right.longest_size:
-                combined_list = left.longest_size
-            else:
-                combined_list = right.longest_size
-            is_entire_range = False
-        if left.left_size > right.right_size:
-            return Result(left.left_size, right.right_size, left.left_size, is_entire_range)
-        else:
-            return Result(left.left_size, right.right_size, right.right_size, is_entire_range)
+        return left + right
 
 ## Feel free to add your own tests here.
 def test_longest_run():

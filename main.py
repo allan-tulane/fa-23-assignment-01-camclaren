@@ -5,12 +5,24 @@ See assignment-01.pdf for details.
 # no imports needed.
 
 def foo(x):
-    ### TODO
-    pass
+    if x <= 1:
+        return x
+    else:
+        ra = foo(x - 1)
+        rb = foo(x - 2)
+        return ra + rb
 
 def longest_run(mylist, key):
-    ### TODO
-    pass
+    current_seq = 0
+    max_seq = 0
+
+    for i in mylist:
+        if i == key:
+            current_seq += 1
+        else:
+            if current_seq > max_seq:
+                max_seq = current_seq
+            current_seq = 0
 
 
 class Result:
@@ -27,8 +39,34 @@ class Result:
     
     
 def longest_run_recursive(mylist, key):
-    ### TODO
-    pass
+    # if there's no items, the key does not cover any of the range of the list
+    if len(mylist) == 0:
+        return Result(0, 0, 0, False)
+    # if there's only one item, that one item is the key; therefore the key covers the entire range of the list
+    elif len(mylist) == 1:
+        if mylist[0] == key:
+            return Result(1, 1, 1, True)
+        else:
+            return Result(1, 1, 1, False)
+    else:
+        halves = len(mylist) // 2
+        left = longest_run_recursive(mylist[:halves], key)
+        right = longest_run_recursive(mylist[:halves], key)
+
+        if mylist[halves] == mylist[halves - 1] == key:
+            whole = left.right_size + right.right_size
+            is_entire_range = left.is_entire_range and right.is_entire_range
+
+        else:
+            if left.longest_size > right.longest_size:
+                whole = left.longest_size
+            else:
+                whole = right.longest_size
+            is_entire_range = False
+        if left.left_size > right.right_size:
+            return Result(left.left_size, right.right_size, left.left_size, is_entire_range)
+        else:
+            return Result(left.left_size, right.right_size, right.right_size, is_entire_range)
 
 ## Feel free to add your own tests here.
 def test_longest_run():

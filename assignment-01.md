@@ -2,7 +2,7 @@
 
 # CMPS 2200 Assignment 1
 
-**Name:**__Cameron McLaren_______
+**Name:** __Cameron McLaren__
 
 
 In this assignment, you will learn more about asymptotic notation, parallelism, functional languages, and algorithmic cost models. As in the recitation, some of your answer will go here and some will go in `main.py`. You are welcome to edit this `assignment-01.md` file directly, or print and fill in by hand. If you do the latter, please scan to a file `assignment-01.pdf` and push to your github repository. 
@@ -63,11 +63,7 @@ $$
 
   - 2b. (6 pts) What does this function do, in your own words?  
 
-.  
-.  
-.  
-.  
-.  
+.  This function takes in a value which represents the nth element in the Fibonacci sequence. If the number is 1 or 0, it simply returns that value since those are the corresponding Fibonacci sequence values. However, if the number is greater than 1, it calls the function foo recursively in order to add up the previous 2 numbers in the sequence (the method used for calculating each subsequent term in the Fibonacci sequence).
 .  
 .  
 .  
@@ -93,11 +89,7 @@ E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`
 
   - 3b. (4 pts) What is the Work and Span of this implementation?
 
-.  
-.  
-.  
-.  
-.  
+.  The work of this function is O(n) because the amount of times the function iterates is dependent on the length of the list, since the for-loop in the function runs as many times as there are elements in the list. Since there's no parallelism in the iterative implementation of this function, the span is also O(n).
 .  
 .  
 .  
@@ -108,7 +100,7 @@ E.g., `longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3`
 
   - 3d. (4 pts) What is the Work and Span of this sequential algorithm?  
 .  
-.  
+.  The base case has a work of O(1) because it's a simple comparison
 .  
 .  
 .  
